@@ -1,0 +1,2 @@
+# Command line options for vlmcsd:
+SERVICE_OPTS="-i /etc/vlmcsd/vlmcsd.ini -l syslog -T0 -v"

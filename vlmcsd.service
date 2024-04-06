@@ -1,0 +1,33 @@
+[Unit]
+Description=KMS Emulator in C
+
+Wants=network-online.target
+After=network-online.target
+
+StartLimitIntervalSec=0
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+User=vlmcsd
+Group=vlmcsd
+
+PrivateTmp=yes
+DeviceAllow=/dev/null rw
+DeviceAllow=/dev/random r
+DeviceAllow=/dev/urandom r
+ProtectHome=yes
+ProtectSystem=strict
+MemoryDenyWriteExecute=true
+
+EnvironmentFile=-/etc/sysconfig/vlmcsd
+
+Type=simple
+
+LogRateLimitIntervalSec=0
+
+ExecStart=/usr/bin/vlmcsd -D $SERVICE_OPTS
+
+Restart=always
+RestartSec=10
