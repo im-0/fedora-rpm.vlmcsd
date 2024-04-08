@@ -5,7 +5,7 @@
 
 Name:       vlmcsd
 Version:    0
-Release:    0.0%{?snapshot}%{?dist}
+Release:    1.0%{?snapshot}%{?dist}
 Summary:    KMS Emulator in C
 
 License:    AS-IS
@@ -111,5 +111,8 @@ exit 0
 
 
 %changelog
+* Mon Apr 8 2024 Ivan Mironov <mironov.ivan@gmail.com> - 0-1.0.20240406git70e0357
+- Fix firewalld service file
+
 * Sat Apr 6 2024 Ivan Mironov <mironov.ivan@gmail.com> - 0-0.0.20240406git70e0357
 - Initial packaging

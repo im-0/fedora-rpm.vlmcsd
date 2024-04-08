@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <service>
-  <short>KMS Emulator in C</short>
+  <short>vlmcsd</short>
+  <description>KMS Emulator in C</description>
   <port port="1688" protocol="tcp"/>
 </service>
