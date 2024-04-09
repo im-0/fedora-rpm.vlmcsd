@@ -22,7 +22,6 @@ BuildRequires:  gcc
 BuildRequires:  git
 BuildRequires:  make
 BuildRequires:  systemd-rpm-macros
-BuildRequires:  firewall-macros
 
 Requires(pre):  shadow-utils
 
@@ -101,7 +100,7 @@ exit 0
 
 %post
 %systemd_post %{name}.service
-%firewalld_reload
+firewall-cmd --reload || true
 
 
 %preun
