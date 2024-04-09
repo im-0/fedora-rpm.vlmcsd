@@ -5,7 +5,7 @@
 
 Name:       vlmcsd
 Version:    0
-Release:    1.0%{?snapshot}%{?dist}
+Release:    2.0%{?snapshot}%{?dist}
 Summary:    KMS Emulator in C
 
 License:    AS-IS
@@ -22,6 +22,7 @@ BuildRequires:  gcc
 BuildRequires:  git
 BuildRequires:  make
 BuildRequires:  systemd-rpm-macros
+BuildRequires:  firewall-macros
 
 Requires(pre):  shadow-utils
 
@@ -100,6 +101,7 @@ exit 0
 
 %post
 %systemd_post %{name}.service
+%firewalld_reload
 
 
 %preun
@@ -111,6 +113,9 @@ exit 0
 
 
 %changelog
+* Tue Apr 9 2024 Ivan Mironov <mironov.ivan@gmail.com> - 0-2.0.20240406git70e0357
+- Fix firewalld service file detection after package install/update
+
 * Mon Apr 8 2024 Ivan Mironov <mironov.ivan@gmail.com> - 0-1.0.20240406git70e0357
 - Fix firewalld service file
 
