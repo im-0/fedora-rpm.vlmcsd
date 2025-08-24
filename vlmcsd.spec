@@ -5,7 +5,7 @@
 
 Name:       vlmcsd
 Version:    0
-Release:    2.0%{?snapshot}%{?dist}
+Release:    3.0%{?snapshot}%{?dist}
 Summary:    KMS Emulator in C
 
 License:    AS-IS
@@ -16,10 +16,11 @@ Source1:    vlmcsd
 Source2:    vlmcsd.service
 Source3:    vlmcsd.xml
 
-Patch0: 0001-Updated-vlmcsd.kmd.patch
+Patch0: 00-update-db-for-2021.patch
+Patch1: 01-update-db-for-2024.patch
+Patch2: 02-extend-size-limit.patch
 
 BuildRequires:  gcc
-BuildRequires:  git
 BuildRequires:  make
 BuildRequires:  systemd-rpm-macros
 
@@ -33,12 +34,9 @@ KMS Emulator in C.
 %prep
 %setup -q -D -T -b0 -n %{name}-%{commit}
 
-git config --global user.email "rpmbuild@example.org"
-git config --global user.name "rpmbuild"
-git init
-git add .
-git commit -m "import"
-git am %{PATCH0}
+%patch -P 0 -p 2
+%patch -P 1 -p 2
+%patch -P 2 -p 2
 
 
 %build
@@ -112,6 +110,9 @@ firewall-cmd --reload || true
 
 
 %changelog
+* Sun Aug 24 2025 Ivan Mironov <mironov.ivan@gmail.com> - 0-3.0.20240406git70e0357
+- Add patches from https://github.com/mogeko/docker-vlmcsd
+
 * Tue Apr 9 2024 Ivan Mironov <mironov.ivan@gmail.com> - 0-2.0.20240406git70e0357
 - Fix firewalld service file detection after package install/update
 
